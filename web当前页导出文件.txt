@@ -1,0 +1,12 @@
+用作与POST接口方式
+url: `/healthys/export`,
+    method: 'POST',
+    responseType: 'blob',  //必须设置
+    data:data
+
+//接口调用成功后获取文件流
+var blob = new Blob([result]);
+let elink = document.createElement('a');
+elink.download = "download.xls"; //可设置导出文件后缀
+elink.href = URL.createObjectURL(blob);
+elink.click();

@@ -1,0 +1,13 @@
+let bdhtml = document.querySelector('.app-main').innerHTML;		//获取当前页html代码
+let sprnstr = '<!-- <startprint> -->';				//需在html中加入此注释，为了找到打印开始处
+let eprnstr = '<!-- <endprint> -->';				//需在html中加入此注释，为了找到打印结束处
+let prnhtml = bdhtml.substring(bdhtml.indexOf(sprnstr) + 18);		//从开始处向后取html
+let prnhtmls = prnhtml.substring(0,prnhtml.indexOf(eprnstr));		//从结束代码向前取html
+//当前页切换为所获取的html（即所要打印局部）
+window.document.body.innerHTML=prnhtmls;
+window.document.body.innerHTML=bdhtml;
+//打印命令
+window.print()
+//打印取消或者返回页面后，恢复打印之前的数据并刷新页面
+window.document.body.innerHTML=bdhtml;
+window.location.reload()
