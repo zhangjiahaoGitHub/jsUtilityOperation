@@ -1,0 +1,3 @@
+首先可以在mounted中添加监听：window.addEventListener("resize", this.resizeHandler);
+最后在销毁页面的时候beforeDestroy中删除监听提高性能window.removeEventListener("resize", this.resizeHandler);
+其中this.resizeHandler为methods中的自定义事件
