@@ -1,0 +1,26 @@
+1.eachets地图需按地区引入地图js
+
+2.创建echarts实例，使用主题
+在echarts官网下载定义好的json主题，引入之后
+let cancelTravelObj=cancelTravel
+echarts.registerTheme('cancelTravel',cancelTravelObj)
+let groupChart2 = echarts.init(
+      document.getElementById("formingStatistics"),
+      "cancelTravel"
+ );
+其中"canselTravel"为主题
+groupChart2.setOption(groupOption2);
+
+3.随窗口大小改变而更新echarts
+mounted中：window.addEventListener("resize", this.resizeHandler);
+dom区域更新：
+resizeHandler() {
+      this.groupChart2.resize();
+}
+
+4.提升性能
+beforeDestroy中：window.removeEventListener("resize", this.resizeHandler);
+
+5.echarts中定义事件
+this.groupChart2.on('click', me.mapClick);
+最好在销毁页面时候清除事件
