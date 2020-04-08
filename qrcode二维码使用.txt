@@ -1,0 +1,31 @@
+npm install  qrcodejs2 --save
+import QRCode from 'qrcodejs2'
+
+html：
+<div class="qrcode" ref="qrCodeUrl"></div>
+
+js:
+var qrcode = new QRCode(document.querySelector('.qrcode'), {
+          text: `http://jiujiushequ.llyzf.cn:6442/lly-posp-proxy//toAPPRegister.app?phone=${vm.phone}&product=JJSQ`,
+          width: 100,
+          height: 100,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
+        })
+
+
+注：在H5移动端生成二维码后和PC端dom结构不一样：
+PC端是生成canvas和img，实际显示在img中
+H5移动端只生成canvas并展示在其中，所以无法触发默认长按保存事件
+
+如何在H5长按保存：
+原理：将canvas中生成的base64位图片流装到新创建的img中，再把老的canvas隐藏或删除
+convertCanvasToImage(canvas){
+      var image = new Image();
+      image.src = canvas.toDataURL("image/png");
+      return image;
+},
+let newImgDom = this.convertCanvasToImage(document.querySelector('.qrcode canvas'))
+document.querySelector('.qrcode').append(newImgDom)
+document.querySelector('.qrcode').removeChild(document.querySelector('.qrcode').childNodes[0])
