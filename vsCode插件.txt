@@ -1,0 +1,12 @@
+any-rule：正则
+Auto Rename Tag：html标签首尾对应修改
+Color Picker：css颜色面板选择
+Debugger for Chrome：可以将debugger应用在谷歌浏览器
+File Utils：可以在vsCode中操作文件（删除文件等）
+GitLens：git
+HTML CSS Support：html css提示
+HTML Snippets：html提示
+JavaScript（ES6）code snippets：es6提示
+Path Autocomplete：图片等路径提示
+Vetur，VueHelper：vue帮助
+vscode-icons：vsCode中文件图标插件
