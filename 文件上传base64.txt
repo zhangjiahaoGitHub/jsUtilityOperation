@@ -1,0 +1,5 @@
+let reader = new FileReader()
+this.imgUrlBase64 = reader.readAsDataURL(file)	//file为文件对象，this.imgUrlBase64为读取后的文件对象
+reader.onload = function () {
+	let base64 = reader.result.split(',')[1]	//base64为文件已经转成的base64位字符串
+}
