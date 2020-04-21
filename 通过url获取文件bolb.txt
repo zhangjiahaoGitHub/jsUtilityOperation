@@ -1,0 +1,12 @@
+	    //获取图片的Blob值
+                    getImageBlob : function (url, cb) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("get", url, true);
+                        xhr.responseType = "blob";
+                        xhr.onload = function() {
+                            if (this.status == 200) {
+                                if(cb) cb(this.response);
+                            }
+                        };
+                        xhr.send();
+                    }
