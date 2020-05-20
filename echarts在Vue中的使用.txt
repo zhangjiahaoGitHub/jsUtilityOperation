@@ -1,4 +1,5 @@
-1.eachets地图需按地区引入地图js
+1.echarts地图需按地区引入地图js
+其中地图js可在，依赖node_modules/echarts/map/js中寻找
 
 2.创建echarts实例，使用主题
 在echarts官网下载定义好的json主题，引入之后
