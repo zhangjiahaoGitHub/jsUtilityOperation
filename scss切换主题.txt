@@ -1,0 +1,44 @@
+$color-primary:#FF9026; /* 主题颜色 */
+$color-primary-anjin:#221814; /* 褐色 */
+$color-primary-orange:#f08519; /* 橙色 */
+$color-primary-huangse:#f1b900; /* 黄色 */
+$color-primary-lanse:#38a3f7; /* 宝蓝色 */
+
+@mixin color_primary($color){/*通过该函数设置字体颜色，后期方便统一管理；*/
+  color:$color !important;
+   
+  [data-theme="anjin"] & {
+    color:$color-primary-anjin !important;
+  }
+  [data-theme="orange"] & {
+    color:$color-primary-orange !important;
+  }
+  [data-theme="huangse"] & {
+    color:$color-primary-huangse !important;
+  }
+  [data-theme="lanse"] & {
+    color:$color-primary-lanse !important;
+  }
+}
+@mixin bg_primary($color){/*通过该函数设置字体颜色，后期方便统一管理；*/
+  background-color:$color !important;
+   
+  [data-theme="anjin"] & {
+      background-color:$color-primary-anjin !important;
+  }
+  [data-theme="orange"] & {
+      background-color:$color-primary-orange !important;
+  }
+  [data-theme="huangse"] & {
+    background-color:$color-primary-huangse !important;
+  }
+  [data-theme="lanse"] & {
+      background-color:$color-primary-lanse !important;
+  }
+}
+
+
+js中
+window.document.documentElement.setAttribute('data-theme', 'lanse')
+
+
