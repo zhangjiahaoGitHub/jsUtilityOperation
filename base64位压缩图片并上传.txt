@@ -1,0 +1,63 @@
+compressImg(width, height, img) {
+        var canvas = document.createElement('canvas'), c = canvas.getContext('2d');
+        canvas.width = width;
+        canvas.height = height;
+        c.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, width, height);
+        return canvas.toDataURL('image/png');
+    },
+    chageBase (fileList) {
+      let vm = this
+      let file = fileList.raw
+      // 将文件以Data URL形式读入页面
+      let reader = new FileReader()
+      this.imgUrlBase64 = reader.readAsDataURL(file)
+      reader.onload = function () {
+        // let url = reader.result.split(',')[1]  //获取base64位字符串
+        var img = new Image();
+        img.src = reader.result;
+        img.onload = function () {
+          var w = this.width,
+          h = this.height,
+          scale = w / h;
+          //压缩图片
+          var b64 = compressImg(600, 600 / scale, img);
+          let parmas = {
+            '0': '0700',
+            '3': '190949',
+            // '9': '10P',
+            '40': b64,
+            '42': vm.merchantNo,
+            '59': vm.version
+          }
+          parmas = vm.$mdata.mdGet(parmas)
+          vm.fullscreenLoading = true
+          const root = process.env.NODE_ENV === 'production' ? 'http://bxkj.xykb1314.top:6442/lly-posp-proxy/' : '/apis'
+          vm.$http.post(`/uploadImage.app`, parmas)
+            .then(res => {
+              vm.fullscreenLoading = false
+              this.fileList = []
+              if (res.data[39] === '00') {
+                vm.$message({
+                  message: '上传成功',
+                  center: true,
+                  offset: 30,
+                  duration: 2500,
+                  type: 'success'
+                })
+              } else {
+                vm.$message({
+                  message: res.data[39],
+                  center: true,
+                  offset: 30,
+                  duration: 2500,
+                  type: 'success'
+                })
+              }
+            })
+            .catch(err => {
+              console.log(err)
+              vm.fullscreenLoading = false
+            })
+        }
+      }
+    },
