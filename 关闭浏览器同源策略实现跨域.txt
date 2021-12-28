@@ -1,0 +1,3 @@
+1.首先新建一个英文文件夹
+2.右键浏览器快捷方式-属性
+3.在目标最后加上： --disable-web-security --user-data-dir=英文文件夹
